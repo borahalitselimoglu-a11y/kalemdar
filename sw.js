@@ -1,6 +1,6 @@
 /* Kalemdar service worker — çevrimdışı önbellek + anımsatıcı bildirimleri. Kullanıcı verisi asla ağa gitmez.
    Her yeni sürümde CACHE adını artır (kalemdar-v5, v6...) ki telefonlar güncellemeyi alsın. */
-const CACHE = 'kalemdar-v4';
+const CACHE = 'kalemdar-v5';
 const ASSETS = ['./', './index.html', './manifest.json', './privacy.html', './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-512.png', './icons/logo-256.png', './lib/jspdf.umd.min.js', './lib/html2canvas.min.js'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });

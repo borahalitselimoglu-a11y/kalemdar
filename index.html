@@ -458,6 +458,14 @@ figure.audio.playing .a-play{animation:pulse 1.4s ease-in-out infinite}
 .icon-btn.on{color:var(--pri)}
 .ed-top .icon-btn[data-e=remind].on{color:#E9A23B}
 
+/* web lock wall */
+.wall{justify-content:center}
+.wall .wall-t{font-size:20px;opacity:1;margin:8px 0 6px}
+.wall .wall-s{max-width:420px;line-height:1.6}
+.wall a.onb-go{display:block;text-decoration:none;text-align:center;margin-top:10px}
+.wall-open{color:#C6B9FF;font-weight:700;margin-top:18px;text-decoration:none}
+.wall-priv{color:rgba(255,255,255,.55);font-size:13px;margin-top:26px}
+
 </style>
 </head>
 <body>
@@ -849,6 +857,10 @@ gcalNoIdS:['Geliştirici ayarı: Google Cloud Console’da “Web uygulaması”
 icsAll:['Tüm anımsatıcılar → takvim dosyası','All reminders → calendar file','Todos los recordatorios → archivo de calendario','Tous les rappels → fichier agenda','Tutti i promemoria → file calendario','Alle Erinnerungen → Kalenderdatei','Todos os lembretes → arquivo de agenda','Все напоминания → файл календаря','全部提醒 → 日历文件','全リマインダー → カレンダーファイル','كل التذكيرات ← ملف تقويم','सभी रिमाइंडर → कैलेंडर फ़ाइल'],
 icsAllS:['Samsung, Outlook ve diğer takvimlere aktar (.ics)','Import into Samsung, Outlook and other calendars (.ics)','Importar en Samsung, Outlook y otros (.ics)','Importer dans Samsung, Outlook… (.ics)','Importa in Samsung, Outlook… (.ics)','In Samsung, Outlook usw. importieren (.ics)','Importar no Samsung, Outlook… (.ics)','Импорт в Samsung, Outlook и др. (.ics)','导入三星、Outlook 等日历 (.ics)','Samsung・Outlook などに取り込み (.ics)','استيراد إلى Samsung وOutlook وغيرها (.ics)','Samsung, Outlook आदि में आयात (.ics)'],
 privacy:['Gizlilik politikası','Privacy policy','Política de privacidad','Politique de confidentialité','Informativa sulla privacy','Datenschutzerklärung','Política de privacidade','Политика конфиденциальности','隐私政策','プライバシーポリシー','سياسة الخصوصية','गोपनीयता नीति'],
+wallT:['{app} bir Android uygulamasıdır','{app} is an Android app','{app} es una app de Android','{app} est une application Android','{app} è un’app Android','{app} ist eine Android-App','{app} é um app Android','{app} — приложение для Android','{app} 是一款 Android 应用','{app} は Android アプリです','{app} تطبيق لنظام Android','{app} एक Android ऐप है'],
+wallS:['Notların, el yazın ve kayıtların yalnızca uygulamada, cihazında güvenle saklanır. Kullanmak için Google Play’den indir.','Your notes, handwriting and records live safely inside the app, on your device. Get it on Google Play to use it.','Tus notas y registros viven seguros dentro de la app. Descárgala en Google Play.','Vos notes et données restent dans l’application, sur votre appareil. Téléchargez-la sur Google Play.','Note e dati restano al sicuro nell’app, sul dispositivo. Scaricala da Google Play.','Notizen und Daten bleiben sicher in der App auf deinem Gerät. Lade sie bei Google Play herunter.','Suas notas e registros ficam seguros no app, no seu dispositivo. Baixe no Google Play.','Заметки и записи хранятся в приложении на устройстве. Скачайте его в Google Play.','笔记和记录安全地保存在应用中、你的设备上。请在 Google Play 下载。','ノートや記録はアプリ内・端末内に安全に保存されます。Google Play から入手してください。','تبقى ملاحظاتك وسجلاتك آمنة داخل التطبيق على جهازك. حمّله من Google Play.','आपके नोट्स और रिकॉर्ड ऐप में, आपके डिवाइस पर सुरक्षित रहते हैं। Google Play से डाउनलोड करें।'],
+getPlay:['Google Play’den indir','Get it on Google Play','Descargar en Google Play','Disponible sur Google Play','Disponibile su Google Play','Bei Google Play laden','Baixar no Google Play','Скачать в Google Play','在 Google Play 下载','Google Play で入手','حمّله من Google Play','Google Play से पाएँ'],
+openApp:['Yüklüyse uygulamada aç','Already installed? Open the app','¿Ya la tienes? Abrir la app','Déjà installée ? Ouvrir l’app','Già installata? Apri l’app','Schon installiert? App öffnen','Já instalado? Abrir o app','Уже установлено? Открыть','已安装？打开应用','インストール済み？アプリを開く','مثبّت مسبقًا؟ افتح التطبيق','पहले से इंस्टॉल? ऐप खोलें'],
 };
 
 /* Kalemdar — yerel, şifrelenebilir not defteri + el yazısı + ses + cüzdan */
@@ -856,6 +868,8 @@ privacy:['Gizlilik politikası','Privacy policy','Política de privacidad','Poli
 (() => {
 const APP = 'Kalemdar';
 const GCAL_CLIENT_ID = '';
+const PKG = 'com.bead.kalemdar';
+const PLAY_URL = 'https://play.google.com/store/apps/details?id=' + PKG;
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const uid = (p = '') => p + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
@@ -1271,8 +1285,28 @@ document.addEventListener('visibilitychange', () => {
   else fireDue();
 });
 
+/* ---------- web lock: runs only inside the Play-installed Android app (TWA) ---------- */
+function launchAllowed() {
+  if (/claudeusercontent|claude\.ai|^localhost$|^127\.0\.0\.1$/.test(location.hostname)) return true;
+  const fromApp = document.referrer.startsWith('android-app://' + PKG);
+  try { if (fromApp) sessionStorage.setItem('kd-app', '1'); return fromApp || sessionStorage.getItem('kd-app') === '1'; } catch { return fromApp; }
+}
+function showStoreWall() {
+  const nav = (navigator.language || 'en').toLowerCase(); LI = Math.max(0, LANGS.findIndex(l => nav.startsWith(l[0]))); if (!LANGS.some(l => nav.startsWith(l[0]))) LI = 1;
+  document.documentElement.lang = LANGS[LI][0]; document.documentElement.dir = LANGS[LI][0] === 'ar' ? 'rtl' : 'ltr';
+  const intent = `intent://${location.host}${location.pathname}#Intent;scheme=https;package=${PKG};S.browser_fallback_url=${encodeURIComponent(PLAY_URL)};end`;
+  const el = document.createElement('div'); el.className = 'onb wall';
+  el.innerHTML = `<img class="onb-logo" src="${LOGO}" alt=""><h1>${APP}</h1><p>${t('tagline')}</p>
+    <h3 class="wall-t">${t('wallT')}</h3><p class="wall-s">${t('wallS')}</p>
+    <a class="btn primary onb-go" href="${PLAY_URL}" rel="noopener">▶ ${t('getPlay')}</a>
+    ${/android/i.test(navigator.userAgent) ? `<a class="wall-open" href="${intent}">${t('openApp')}</a>` : ''}
+    <a class="wall-priv" href="privacy.html?lang=${LANGS[LI][0] === 'tr' ? 'tr' : 'en'}">${t('privacy')}</a>`;
+  document.body.appendChild(el);
+}
+
 /* ---------- boot ---------- */
 async function boot() {
+  if (!launchAllowed()) { showStoreWall(); return; }
   const persistent = await DB.open();
   S.sec = (await DB.get('meta', 'sec')) || { id: 'sec', enabled: false, autoLock: 1 };
   S.ui = (await DB.get('meta', 'ui')) || { id: 'ui', theme: 'system', layout: 'grid' };

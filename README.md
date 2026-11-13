@@ -43,4 +43,9 @@ Web uygulamaları sunucu olmadan, uygulama tamamen kapalıyken bildirimi tam san
 5. Not: Google, takvim yazma iznini "hassas kapsam" sayar. 100 kullanıcıya kadar "doğrulanmamış uygulama" uyarısıyla çalışır; mağazada herkese açmadan önce Google'ın uygulama doğrulamasından (gizlilik politikası sayfası vb.) geçmek gerekir.
 
 ## Güncelleme yayınlarken
-`sw.js` dosyasının başındaki `const CACHE = 'kalemdar-v4';` satırındaki sayıyı her yeni sürümde bir artır (v5, v6…). Böylece telefonlardaki uygulama yeni sürümü alır. Android paketini (.aab) yeniden yüklemen gerekmez; GitHub'daki dosyaları güncellemen yeterli.
+`sw.js` dosyasının başındaki `const CACHE = 'kalemdar-v5';` satırındaki sayıyı her yeni sürümde bir artır (v6, v7…). Böylece telefonlardaki uygulama yeni sürümü alır. Android paketini (.aab) yeniden yüklemen gerekmez; GitHub'daki dosyaları güncellemen yeterli.
+
+## Web kilidi
+Kalemdar yalnızca Google Play'den kurulan Android uygulamasının (paket: com.bead.kalemdar) içinden açılır. Tarayıcıdan girenler "Google Play'den indir" ekranını görür; veri depolama hiç başlatılmaz. Gizlilik sayfası (privacy.html) herkese açık kalır.
+Not: Kod herkese açık depoda durduğu sürece bu kilit sıradan kullanıcıları durdurur ama teknik bilgisi olan biri tarafından aşılabilir.
+Paket adını değiştirirsen index.html içindeki `const PKG = 'com.bead.kalemdar';` satırını da güncelle.
