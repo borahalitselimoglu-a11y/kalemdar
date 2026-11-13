@@ -17,7 +17,7 @@ Sunucu yok: tüm veriler cihazdaki IndexedDB'de. Kilit açıksa her şey AES-256
 1. Bu klasördeki her şeyi yeni bir GitHub deposuna yükle (index.html kökte).
 2. Settings → Pages → Deploy from branch → main / root.
 3. https://KULLANICI.github.io/DEPO/ adresini PWABuilder'a ver → Android paketi.
-4. PWABuilder'ın verdiği assetlinks.json dosyasını `.well-known/assetlinks.json` olarak yayınla.
+4. Adres çubuğunu gizlemek için PWABuilder'ın verdiği kaydı, KULLANICI.github.io deposundaki `.well-known/assetlinks.json` dosyasına ekle (Kalemdar deposuna değil).
 5. Android paketinde mikrofon ve kamera izinleri Chrome üzerinden istenir (ilk kullanımda).
 
 ## Dosyalar
@@ -39,5 +39,8 @@ Web uygulamaları sunucu olmadan, uygulama tamamen kapalıyken bildirimi tam san
 1. https://console.cloud.google.com → yeni proje → "APIs & Services" → **Google Calendar API**'yi etkinleştir.
 2. "OAuth consent screen": External, uygulama adı Kalemdar, kapsam olarak `.../auth/calendar.events` ekle; test kullanıcısı olarak kendi Gmail adresini ekle.
 3. "Credentials" → "Create credentials" → **OAuth client ID** → türü **Web application** → "Authorized JavaScript origins" kısmına `https://KULLANICI.github.io` ekle.
-4. Oluşan istemci kimliğini (…apps.googleusercontent.com) `index.html` içinde `const GCAL_CLIENT_ID = '';` satırındaki tırnakların arasına yapıştır (ya da uygulamada Ayarlar → Anımsatıcı → "Google OAuth istemci kimliği" alanına gir).
+4. Oluşan istemci kimliğini (…apps.googleusercontent.com) `index.html` içinde `const GCAL_CLIENT_ID = '';` satırındaki tırnakların arasına yapıştır. Kimlik girilmediği sürece takvim eşitleme bölümü kullanıcılara hiç görünmez.
 5. Not: Google, takvim yazma iznini "hassas kapsam" sayar. 100 kullanıcıya kadar "doğrulanmamış uygulama" uyarısıyla çalışır; mağazada herkese açmadan önce Google'ın uygulama doğrulamasından (gizlilik politikası sayfası vb.) geçmek gerekir.
+
+## Güncelleme yayınlarken
+`sw.js` dosyasının başındaki `const CACHE = 'kalemdar-v4';` satırındaki sayıyı her yeni sürümde bir artır (v5, v6…). Böylece telefonlardaki uygulama yeni sürümü alır. Android paketini (.aab) yeniden yüklemen gerekmez; GitHub'daki dosyaları güncellemen yeterli.

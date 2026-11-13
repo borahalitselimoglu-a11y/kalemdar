@@ -1356,7 +1356,7 @@ function render() {
   m.innerHTML = ({ home: viewHome, finance: viewFinance, search: viewSearch, settings: viewSettings, trash: viewTrash }[S.view] || viewHome)();
   hydrateImgs(m);
   if (S.view === 'search') { const i = $('#q'); i.focus(); i.setSelectionRange(i.value.length, i.value.length); }
-  if (S.view === 'settings') { fillStorage(); if (S.ui.gcal && navigator.onLine) need('gis').catch(() => {}); }
+  if (S.view === 'settings') { fillStorage(); if (gcalId() && navigator.onLine) need('gis').catch(() => {}); }
 }
 
 /* ---------- HOME ---------- */
@@ -1596,9 +1596,8 @@ function viewSettings() {
     ${srow(tile('🈯', '#9BE7CF', '#3FB88F', 'sm'), t('onlineTr'), `<input type="checkbox" class="switch" data-set="onlineTr" ${S.ui.onlineTr !== false ? 'checked' : ''}>`, '', t('onlineTrS'))}
   </div>
   <div class="sgt">${t('remind')}</div><div class="sgroup">
-    ${srow(tile('📅', '#A8D8FF', '#5AA9E6', 'sm'), t('gcalSync'), `<input type="checkbox" class="switch" data-act="togglegcal" ${S.ui.gcal ? 'checked' : ''} aria-label="${esc(t('gcalSync'))}">`, '', t('gcalSyncS'))}
-    ${S.ui.gcal ? srow(tile('🔄', '#9BE7CF', '#3FB88F', 'sm'), t('syncNow'), '', 'gcalsync') : ''}
-    ${gcalBuildId() ? '' : srow(tile('🛠️', '#D9CBB9', '#A88F74', 'sm'), t('gcalNoId'), `<input class="sinp" data-set="gcalClientId" placeholder="….apps.googleusercontent.com" value="${esc(S.ui.gcalClientId || '')}" style="width:150px">`)}
+    ${gcalId() ? srow(tile('📅', '#A8D8FF', '#5AA9E6', 'sm'), t('gcalSync'), `<input type="checkbox" class="switch" data-act="togglegcal" ${S.ui.gcal ? 'checked' : ''} aria-label="${esc(t('gcalSync'))}">`, '', t('gcalSyncS')) : ''}
+    ${gcalId() && S.ui.gcal ? srow(tile('🔄', '#9BE7CF', '#3FB88F', 'sm'), t('syncNow'), '', 'gcalsync') : ''}
     ${srow(tile('🗓️', '#FFE88A', '#E9BC32', 'sm'), t('icsAll'), '', 'icsall', t('icsAllS'))}
   </div>
   <div class="sgt">${t('tFinance')}</div><div class="sgroup">
@@ -2983,7 +2982,7 @@ if ('serviceWorker' in navigator) navigator.serviceWorker.addEventListener?.('me
 
 /* ---------- GOOGLE CALENDAR SYNC (opt-in) ---------- */
 const gcalBuildId = () => GCAL_CLIENT_ID && !GCAL_CLIENT_ID.startsWith('__') ? GCAL_CLIENT_ID : '';
-const gcalId = () => gcalBuildId() || S.ui.gcalClientId || '';
+const gcalId = () => gcalBuildId();
 let GTOKEN = null;
 async function gToken(interactive) {
   if (GTOKEN && GTOKEN.exp > Date.now() + 60000) return GTOKEN.token;
@@ -3041,11 +3040,7 @@ async function toggleGcal() {
   if (S.ui.gcal) {
     S.ui.gcal = false; try { if (GTOKEN) google.accounts.oauth2.revoke(GTOKEN.token); } catch {} GTOKEN = null; await saveUi(); toast(t('gcalOff')); render(); return;
   }
-  if (!gcalId()) {
-    const v = await promptSheet(t('gcalNoId'), { placeholder: '….apps.googleusercontent.com', hint: t('gcalNoIdS'), ok: t('save') });
-    if (!v) { render(); return; }
-    S.ui.gcalClientId = v.trim(); await saveUi();
-  }
+  if (!gcalId()) { render(); return; }
   need('gis').catch(() => {});
   if (!await ask('📅 ' + t('gcalSync'), t('gcalConsent'), t('gcalConnect'))) { render(); return; }
   try {

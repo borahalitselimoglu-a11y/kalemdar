@@ -1,13 +1,22 @@
-/* Kalemdar service worker — çevrimdışı önbellek + anımsatıcı bildirimleri. Kullanıcı verisi asla ağa gitmez. */
-const CACHE = 'kalemdar-v3';
+/* Kalemdar service worker — çevrimdışı önbellek + anımsatıcı bildirimleri. Kullanıcı verisi asla ağa gitmez.
+   Her yeni sürümde CACHE adını artır (kalemdar-v5, v6...) ki telefonlar güncellemeyi alsın. */
+const CACHE = 'kalemdar-v4';
 const ASSETS = ['./', './index.html', './manifest.json', './privacy.html', './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-512.png', './icons/logo-256.png', './lib/jspdf.umd.min.js', './lib/html2canvas.min.js'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
 self.addEventListener('fetch', e => {
-  if (e.request.method !== 'GET' || new URL(e.request.url).origin !== location.origin) return;
-  e.respondWith(caches.match(e.request, { ignoreSearch: true }).then(r => r || fetch(e.request).then(res => {
-    const copy = res.clone(); caches.open(CACHE).then(c => c.put(e.request, copy)); return res;
-  }).catch(() => caches.match('./index.html'))));
+  const req = e.request;
+  if (req.method !== 'GET' || new URL(req.url).origin !== location.origin) return;
+  const fresh = req.mode === 'navigate' || /\/(index\.html|privacy\.html|manifest\.json)?(\?.*)?$/.test(new URL(req.url).pathname + new URL(req.url).search);
+  if (fresh) {
+    /* Sayfanın kendisi: önce internetten güncelini dene, yoksa önbellekten aç */
+    e.respondWith(fetch(req).then(res => { const copy = res.clone(); caches.open(CACHE).then(c => c.put(req, copy)); return res; })
+      .catch(() => caches.match(req, { ignoreSearch: true }).then(r => r || caches.match('./index.html'))));
+    return;
+  }
+  e.respondWith(caches.match(req, { ignoreSearch: true }).then(r => r || fetch(req).then(res => {
+    const copy = res.clone(); caches.open(CACHE).then(c => c.put(req, copy)); return res;
+  })));
 });
 
 /* Bildirime dokununca ilgili notu aç */
