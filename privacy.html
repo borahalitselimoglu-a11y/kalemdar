@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kalemdar — Gizlilik Politikası / Privacy Policy</title>
+<meta name="description" content="Kalemdar gizlilik politikası — Kalemdar privacy policy">
+<link rel="icon" href="icons/icon-192.png">
+<style>
+:root{--bg:#F6F4FB;--card:#fff;--ink:#2D2A3E;--muted:#6E6A87;--pri:#7C6CF0;--line:#ECE9F4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{background:radial-gradient(120% 90% at 50% 0%,#2B2360 0%,#15122E 70%);color:#fff;text-align:center;padding:36px 20px 30px}
+header img{width:96px;height:96px;border-radius:26px;box-shadow:0 0 40px -6px rgba(124,108,240,.8)}
+header h1{margin:14px 0 4px;font-size:28px}
+header p{margin:0;color:#fff;opacity:.75}
+.tabs{display:flex;justify-content:center;gap:8px;margin-top:18px}
+.tabs button{border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font:inherit;font-weight:700;padding:8px 18px;border-radius:999px;cursor:pointer}
+.tabs button.on{background:#7C6CF0;border-color:#B9A7FF}
+main{max-width:780px;margin:0 auto;padding:24px 18px 60px}
+section{background:var(--card);border-radius:22px;padding:22px 24px;margin-bottom:16px;box-shadow:0 2px 10px -4px rgba(76,60,160,.15)}
+h2{font-size:19px;margin:0 0 10px}
+h3{font-size:16px;margin:18px 0 6px}
+p,li{color:#3A3650}
+ul{padding-left:22px;margin:8px 0}
+li{margin:4px 0}
+.sum{border:2px solid #DCD3FF;background:#F3F0FF}
+.meta{color:var(--muted);font-size:14px}
+table{width:100%;border-collapse:collapse;font-size:14.5px;margin-top:8px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#F3F0FF}
+a{color:#5A4BD8}
+[hidden]{display:none!important}
+footer{text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<header>
+  <img src="icons/logo-256.png" alt="Kalemdar">
+  <h1>Kalemdar</h1>
+  <p id="sub">Gizlilik Politikası</p>
+  <div class="tabs"><button data-l="tr" class="on">Türkçe</button><button data-l="en">English</button></div>
+</header>
+
+<main>
+<!-- ======================= TÜRKÇE ======================= -->
+<div data-lang="tr">
+<p class="meta">Yürürlük tarihi: 13 Kasım 2026 · Son güncelleme: 13 Kasım 2026</p>
+
+<section class="sum">
+  <h2>Kısaca</h2>
+  <ul>
+    <li>Kalemdar'ın sunucusu yoktur. Notların, el yazıların, fotoğrafların, ses kayıtların ve gelir-gider kayıtların <b>yalnızca senin cihazında</b> saklanır.</li>
+    <li>Geliştirici olarak <b>hiçbir kişisel veriyi toplamıyor, görmüyor, satmıyor ve paylaşmıyoruz</b>. Uygulamada reklam, analiz (analytics) veya izleme aracı yoktur.</li>
+    <li>Yalnızca sen açıkça seçersen iki dış hizmet kullanılır: <b>not çevirisi</b> (MyMemory) ve <b>Google Takvim eşitlemesi</b>. Bunlar kapalıyken cihazından hiçbir içerik çıkmaz.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>1. Kim olduğumuz</h2>
+  <p>Bu politika, <b>BEAD</b> ("biz") tarafından geliştirilen Kalemdar uygulaması (web uygulaması ve Android sürümü) için geçerlidir. İletişim: <b>borahalitselimoglu@gmail.com</b>.</p>
+</section>
+
+<section>
+  <h2>2. Cihazında saklanan veriler</h2>
+  <p>Aşağıdakiler yalnızca senin cihazındaki uygulama depolama alanında (IndexedDB) tutulur ve bize ulaşmaz:</p>
+  <ul>
+    <li>Notlar, başlıklar, etiketler, defterler, kontrol listeleri, bağlantılar</li>
+    <li>El yazısı ve çizimler, eklediğin veya çektiğin fotoğraflar, ses kayıtları</li>
+    <li>Gelir-gider kayıtları, kategoriler, bütçe ve para birimi tercihi</li>
+    <li>Anımsatıcı tarih ve saatleri</li>
+    <li>Dil, tema ve benzeri ayarlar</li>
+  </ul>
+  <p><b>Uygulama kilidi</b> açıkken bu veriler, belirlediğin PIN'den türetilen bir anahtarla (PBKDF2 + AES-256-GCM) cihazda şifrelenir. PIN'in hiçbir yere gönderilmez ve saklanmaz; unutulursa şifreli veriler kurtarılamaz.</p>
+</section>
+
+<section>
+  <h2>3. Cihaz izinleri</h2>
+  <table>
+    <tr><th>İzin</th><th>Ne için</th></tr>
+    <tr><td>Kamera</td><td>Yalnızca sen kamera düğmesine bastığında nota fotoğraf eklemek için. Görüntü cihazda kalır.</td></tr>
+    <tr><td>Mikrofon</td><td>Yalnızca sen ses kaydı başlattığında. Kayıt cihazda kalır.</td></tr>
+    <tr><td>Bildirimler</td><td>Kurduğun anımsatıcıların zamanı geldiğinde seni uyarmak için. Bildirimler cihazda oluşturulur.</td></tr>
+    <tr><td>Dosyalar</td><td>Yalnızca sen seçtiğinde galeriden görsel eklemek, yedek veya dışa aktarılmış dosyaları (PDF, Word, Excel vb.) kaydetmek ya da yedek yüklemek için.</td></tr>
+  </table>
+  <p>Bu izinleri istediğin zaman telefonunun ayarlarından geri alabilirsin.</p>
+</section>
+
+<section>
+  <h2>4. İsteğe bağlı dış hizmetler</h2>
+  <h3>4.1 Not çevirisi (MyMemory)</h3>
+  <p>Bir notu başka dile çevirmek istediğinde, cihazında yerleşik bir çeviri motoru varsa çeviri tamamen cihazda yapılır. Yoksa, sana açıkça sorulur ve onaylarsan <b>yalnızca o notun metni</b> çeviri için Translated srl tarafından işletilen <a href="https://mymemory.translated.net" target="_blank" rel="noopener">MyMemory</a> servisine gönderilir. Görseller, sesler, çizimler ve diğer notlar gönderilmez. Bu servis kendi gizlilik koşullarına tabidir. Çevrimiçi çeviriyi Ayarlar'dan tamamen kapatabilirsin.</p>
+  <h3>4.2 Google Takvim eşitlemesi</h3>
+  <p>Bu özellik varsayılan olarak kapalıdır. Açarsan Google hesabınla giriş yapman ve <code>https://www.googleapis.com/auth/calendar.events</code> iznini vermen istenir. Bu izinle Kalemdar:</p>
+  <ul>
+    <li><b>Yalnızca anımsatıcı kurduğun notlar için</b> Google Takvim'inde etkinlik oluşturur, günceller ve siler.</li>
+    <li>Etkinliğe notun başlığını, anımsatıcı saatini, tekrar bilgisini ve notun kısa bir özetini yazar. Uygulama kilidi açıksa başlık yerine genel bir ifade kullanılır ve not içeriği yazılmaz.</li>
+    <li>Takvimindeki diğer etkinlikleri okumaz, listelemez veya değiştirmez.</li>
+  </ul>
+  <p>Google'dan alınan erişim anahtarı yalnızca cihazın belleğinde, en fazla bir saat tutulur; hiçbir sunucuya gönderilmez. Google Takvim'e yazılan bilgiler Google'ın <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Gizlilik Politikası</a>na tabidir.</p>
+  <p><b>Kalemdar'ın Google API'lerinden aldığı bilgileri kullanması ve başka bir uygulamaya aktarması, Sınırlı Kullanım (Limited Use) koşulları dahil olmak üzere <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Hizmetleri Kullanıcı Verileri Politikası</a>'na uygundur.</b> Google kullanıcı verileri reklam amacıyla kullanılmaz, satılmaz, insanlar tarafından okunmaz ve yapay zekâ modellerini eğitmek için kullanılmaz.</p>
+  <p>Erişimi istediğin zaman uygulamada Ayarlar → Anımsatıcı → "Google Takvim ile eşitle" anahtarını kapatarak veya <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">Google hesap izinleri</a> sayfasından kaldırabilirsin.</p>
+  <h3>4.3 Takvime ekle bağlantıları</h3>
+  <p>"Telefon takvimine ekle (.ics)" seçeneği cihazında bir dosya oluşturur, hiçbir yere göndermez. "Google Takvim'e ekle" bağlantısı ise tarayıcıda Google Takvim sayfasını notun başlığı ve saatiyle açar; kaydetmek sana bağlıdır.</p>
+</section>
+
+<section>
+  <h2>5. Barındırma ve teknik kayıtlar</h2>
+  <p>Uygulama dosyaları GitHub Pages üzerinden sunulur. Uygulama ilk kez yüklenirken veya güncellenirken GitHub, standart sunucu kayıtları (ör. IP adresi) tutabilir; bu, <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub Gizlilik Bildirimi</a>'ne tabidir. Uygulama içeriğin bu isteklere eklenmez. Uygulama bir kez yüklendikten sonra internetsiz çalışır.</p>
+</section>
+
+<section>
+  <h2>6. Yedekler ve dışa aktarılan dosyalar</h2>
+  <p>Yedek ve dışa aktarma dosyaları (JSON, PDF, Word, Excel, CSV, ICS vb.) yalnızca senin seçtiğin yere kaydedilir. Uygulama kilidi açıkken alınan yedekler PIN'inle şifrelenir. Bu dosyaları paylaşmak senin kontrolündedir.</p>
+</section>
+
+<section>
+  <h2>7. Verilerin silinmesi</h2>
+  <ul>
+    <li>Notları uygulama içinden silebilirsin (çöp kutusundakiler 30 gün sonra kalıcı olarak silinir).</li>
+    <li>Ayarlar → "Tüm verileri sil" seçeneği cihazdaki her şeyi siler. Uygulamayı kaldırmak veya tarayıcı verilerini temizlemek de aynı sonucu verir.</li>
+    <li>Google Takvim'e yazılmış etkinlikleri Google Takvim'den silebilirsin; anımsatıcıyı uygulamada kaldırdığında eşleşen etkinlik de silinir.</li>
+  </ul>
+  <p>Bizde senin hakkında saklanan bir veri olmadığından, silinecek veya sana teslim edilecek bir sunucu kaydı da yoktur. KVKK ve GDPR kapsamındaki soruların için bize yazabilirsin.</p>
+</section>
+
+<section>
+  <h2>8. Çocuklar</h2>
+  <p>Kalemdar 13 yaşından küçük çocuklara yönelik değildir ve bilerek çocuklardan veri toplamaz (zaten hiçbir kullanıcıdan veri toplamaz).</p>
+</section>
+
+<section>
+  <h2>9. Değişiklikler ve iletişim</h2>
+  <p>Bu politikayı güncellersek yeni sürümü bu sayfada yayınlar ve yukarıdaki tarihi değiştiririz. Önemli değişikliklerde uygulama içinde bilgi veririz.</p>
+  <p>Sorular için: <b>borahalitselimoglu@gmail.com</b></p>
+</section>
+</div>
+
+<!-- ======================= ENGLISH ======================= -->
+<div data-lang="en" hidden>
+<p class="meta">Effective date: November 13, 2026 · Last updated: November 13, 2026</p>
+
+<section class="sum">
+  <h2>In short</h2>
+  <ul>
+    <li>Kalemdar has no servers. Your notes, handwriting, photos, voice recordings and money entries are stored <b>only on your device</b>.</li>
+    <li>As the developer, <b>we do not collect, see, sell or share any personal data</b>. The app contains no ads, analytics or tracking tools.</li>
+    <li>Two external services are used only if you explicitly choose them: <b>note translation</b> (MyMemory) and <b>Google Calendar sync</b>. While they are off, no content leaves your device.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>1. Who we are</h2>
+  <p>This policy applies to the Kalemdar app (web app and Android version) developed by <b>BEAD</b> ("we"). Contact: <b>borahalitselimoglu@gmail.com</b>.</p>
+</section>
+
+<section>
+  <h2>2. Data stored on your device</h2>
+  <p>The following is kept only in the app's storage on your device (IndexedDB) and never reaches us:</p>
+  <ul>
+    <li>Notes, titles, tags, notebooks, checklists and links</li>
+    <li>Handwriting and drawings, photos you add or take, voice recordings</li>
+    <li>Income and expense entries, categories, budget and currency preference</li>
+    <li>Reminder dates and times</li>
+    <li>Language, theme and similar settings</li>
+  </ul>
+  <p>When the <b>app lock</b> is on, this data is encrypted on the device with a key derived from your PIN (PBKDF2 + AES-256-GCM). Your PIN is never sent or stored; if you forget it, encrypted data cannot be recovered.</p>
+</section>
+
+<section>
+  <h2>3. Device permissions</h2>
+  <table>
+    <tr><th>Permission</th><th>Purpose</th></tr>
+    <tr><td>Camera</td><td>Only when you tap the camera button, to add a photo to a note. The image stays on your device.</td></tr>
+    <tr><td>Microphone</td><td>Only when you start a voice recording. The recording stays on your device.</td></tr>
+    <tr><td>Notifications</td><td>To alert you when a reminder you set is due. Notifications are created on the device.</td></tr>
+    <tr><td>Files</td><td>Only when you choose to add images from your gallery, save backups or exported files (PDF, Word, Excel, etc.), or load a backup.</td></tr>
+  </table>
+  <p>You can revoke these permissions at any time in your phone settings.</p>
+</section>
+
+<section>
+  <h2>4. Optional external services</h2>
+  <h3>4.1 Note translation (MyMemory)</h3>
+  <p>When you translate a note, translation runs entirely on your device if it has a built-in translation engine. Otherwise you are asked first, and only if you agree is <b>the text of that note alone</b> sent to the <a href="https://mymemory.translated.net" target="_blank" rel="noopener">MyMemory</a> service operated by Translated srl. Images, audio, drawings and other notes are never sent. That service is governed by its own privacy terms. You can turn online translation off completely in Settings.</p>
+  <h3>4.2 Google Calendar sync</h3>
+  <p>This feature is off by default. If you turn it on, you sign in with your Google account and grant the <code>https://www.googleapis.com/auth/calendar.events</code> permission. With it, Kalemdar:</p>
+  <ul>
+    <li>Creates, updates and deletes events in your Google Calendar <b>only for notes you set a reminder on</b>.</li>
+    <li>Writes the note title, reminder time, repeat rule and a short excerpt of the note to the event. When the app lock is on, a generic title is used and no note content is written.</li>
+    <li>Does not read, list or change any other events in your calendar.</li>
+  </ul>
+  <p>The access token received from Google is kept only in the device's memory for at most one hour and is never sent to any server. Information written to Google Calendar is subject to Google's <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</p>
+  <p><b>Kalemdar's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a>, including the Limited Use requirements.</b> Google user data is not used for advertising, is not sold, is not read by humans, and is not used to train AI models.</p>
+  <p>You can remove access at any time by turning off Settings → Reminders → "Sync with Google Calendar" in the app, or on your <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">Google Account permissions</a> page.</p>
+  <h3>4.3 Add-to-calendar links</h3>
+  <p>"Add to phone calendar (.ics)" creates a file on your device and sends nothing. "Add to Google Calendar" opens the Google Calendar page in your browser with the note title and time filled in; saving it is up to you.</p>
+</section>
+
+<section>
+  <h2>5. Hosting and technical logs</h2>
+  <p>The app files are served from GitHub Pages. When the app is first loaded or updated, GitHub may keep standard server logs (e.g. IP address) under the <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub Privacy Statement</a>. None of your app content is included in those requests. Once installed, the app works offline.</p>
+</section>
+
+<section>
+  <h2>6. Backups and exported files</h2>
+  <p>Backup and export files (JSON, PDF, Word, Excel, CSV, ICS, etc.) are saved only where you choose. Backups made while the app lock is on are encrypted with your PIN. Sharing these files is up to you.</p>
+</section>
+
+<section>
+  <h2>7. Deleting your data</h2>
+  <ul>
+    <li>You can delete notes inside the app (items in the trash are permanently deleted after 30 days).</li>
+    <li>Settings → "Erase all data" deletes everything on the device. Uninstalling the app or clearing browser data has the same effect.</li>
+    <li>Events written to Google Calendar can be deleted in Google Calendar; removing a reminder in the app also deletes its matching event.</li>
+  </ul>
+  <p>Because we hold no data about you, there are no server records to delete or hand over. For questions under the GDPR or Turkey's KVKK, contact us.</p>
+</section>
+
+<section>
+  <h2>8. Children</h2>
+  <p>Kalemdar is not directed at children under 13 and does not knowingly collect data from children (it collects no data from any user).</p>
+</section>
+
+<section>
+  <h2>9. Changes and contact</h2>
+  <p>If we update this policy, we will publish the new version on this page and change the date above. We will let you know in the app about significant changes.</p>
+  <p>Questions: <b>borahalitselimoglu@gmail.com</b></p>
+</section>
+</div>
+
+<footer>© 2026 Kalemdar</footer>
+</main>
+<script>
+(function () {
+  var pick = function (l) {
+    document.querySelectorAll('[data-lang]').forEach(function (d) { d.hidden = d.getAttribute('data-lang') !== l; });
+    document.querySelectorAll('.tabs button').forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-l') === l); });
+    document.documentElement.lang = l;
+    document.getElementById('sub').textContent = l === 'tr' ? 'Gizlilik Politikası' : 'Privacy Policy';
+  };
+  document.querySelectorAll('.tabs button').forEach(function (b) { b.onclick = function () { pick(b.getAttribute('data-l')); }; });
+  var q = new URLSearchParams(location.search).get('lang') || (location.hash || '').slice(1);
+  pick(q === 'en' || (!q && !/^tr/i.test(navigator.language || '')) ? 'en' : 'tr');
+})();
+</script>
+</body>
+</html>
